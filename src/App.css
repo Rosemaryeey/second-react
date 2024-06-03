@@ -1,0 +1,47 @@
+/* h1 {
+  font-size: 90px;
+  font-weight: 500;
+  color: white;
+  text-transform: capitalize;
+  /* text-shadow: 2px 3px 5px green; */
+  /* -webkit-text-stroke-color: orange; */
+  /* -webkit-text-stroke: 0.3vh #329d52 ; 
+  animation-name: move;
+  animation-duration: 5s;
+ 
+}
+
+h1::before{
+    content:  attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 20%;
+    color: rgb(255, 187, 0);
+    -webkit-text-stroke: 0vw #383d52;
+    border-right: 2px  solid white;
+    overflow: hidden;
+    animation: animate 5s linear infinite;
+}
+
+@keyframes animate{
+
+    0%,10%,100%
+    {
+       width: 0;
+
+    }
+    70%,90%
+    {
+        width: 100%;
+    }
+}
+@keyframes move {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(50px);
+  }
+} */
