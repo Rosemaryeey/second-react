@@ -26,7 +26,7 @@ function Mode() {
   return (
     <>
       <div className=" wapper  md:h-[600vh] h-[720vh] ">
-        <label className="switch md:bottom-[6vh] top-[4.5vh] md:right-[18vw] right-[5vw] ">
+        <label className="switch md:bottom-[4vh] bottom-[0vh] md:right-[18vw] right-[5vw] ">
           <input type="checkbox" onChange={switchTheme} />
           <span className="slider round flex justify-around items-center  ">
             <MdSunny className="text-yellow-400 "  />
