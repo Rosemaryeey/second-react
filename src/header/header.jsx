@@ -13,7 +13,7 @@ function Header() {
 
   return (
     <div>
-      <header className=" bg md:h-[15vh] h-[10vh] md:w-screen fixed  ">
+      <header className=" bg md:h-[15vh] h-[10vh] md:w-screen fixed z-10  ">
         {" "}
         { /*z-50 */ }
         <div className=" md:h-[15vh] h-[10vh] flex items-center justify-center">

@@ -1,6 +1,6 @@
 .switch {
-  /* right: 18vw; */
-  /* bottom: 2vh; */
+  /* right: 4vw; */
+  /* bottom: 4.5vh; */
   position: relative;
   display: inline-block;
   width: 50px;
@@ -76,4 +76,25 @@ input:checked + .slider:before {
 
 header{
   background-color:var( --header_color) ;
+}
+
+
+@media screen and (max-width:700px) {
+  
+  .slider:before{
+    width: 14px;
+    height: 14px;
+  }
+
+  .switch{
+    width: 40px;
+    height: 20px;
+  }
+
+
+  input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
 }
