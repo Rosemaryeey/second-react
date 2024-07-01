@@ -36,11 +36,11 @@ function Sidebar() {
               "sm:hidden flex flex-col justify-around items-start h-[70vh]  "
             }
           >
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/project">Project</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/contact">Contact</Link>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#project">Project</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
           </section>
         </div>
       </aside>

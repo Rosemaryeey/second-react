@@ -82,8 +82,9 @@ export const Home = () => {
     <div className=" flex flex-col items-center justify-around h-[100%] w-[100%] ">
       {/* home............................. */}
       <div
+      id="home"
         data-aos="fade-left"
-        className=" bo te section md:w-[100%]  flex items-start justify-center "
+        className=" bo te section md:w-[100%]  flex items-start justify-center  "
       >
         <div
           className=" md:h-[90vh]  h-[140vh] md:w-[90vw] w-[100%] flex items-center justify-center 
