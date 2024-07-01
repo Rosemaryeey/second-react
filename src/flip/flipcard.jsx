@@ -11,19 +11,19 @@ import "./flipcard.css";
 
  const FlipCard = () => {
    return (
-     <div className="  te bo flip-card md:w-[20vw] w-[40vw] md:h-[50vh] h-[25vh] shadow-yellow-500 shadow-md rounded-xl">
+     <div className="  te bo flip-card md:w-[20vw] w-[30vw] md:h-[50vh] h-[25vh] shadow-yellow-500 shadow-md rounded-xl">
        <div className="flip-card-inner">
          <div className="flip-card-front  flex flex-col md:items-center items-center md:justify-between justify-evenly rounded-xl">
            <img
              src={Pic}
              alt="project"
-             className=" md:w-[20vw] w-[40vw] md:h-[20vh] h-[25vh] rounded-t-xl"
+             className=" md:w-[20vw] w-[30vw] md:h-[20vh] h-[10vh] rounded-t-xl"
            />
            <h1>PROJECT 1</h1>
            <img
              src={Pic}
              alt="project"
-             className=" md:w-[20vw] w-[40vw] md:h-[20vh] h-[25vh] rounded-b-xl"
+             className=" md:w-[20vw] w-[30vw] md:h-[20vh] h-[10vh] rounded-b-xl"
            />
            {/* <h3 className="bg-transparent">
              Project 1:

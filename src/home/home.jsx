@@ -13,6 +13,7 @@ import Im from "../assets/wooo.png";
 import emailjs from "@emailjs/browser";
 import Flipcard from "../flip/flipcard";
 import DownloadButton from "../flip/downloadbutton";
+import CallButton from "../flip/callbutton";
 
 // contact
 
@@ -93,11 +94,11 @@ export const Home = () => {
               <p className="tex text md:text-2xl text-3xl  font-serif">
                 Hi I'm Rosemary
               </p>
-              <h1 className="text md:text-5xl text-5xl  font-serif">
+              <h1 className="text md:text-5xl text-4xl  font-serif">
                 A <span className=" spen  text-yellow-500"> </span>
               </h1>
               <p className="text md:text-xl ">
-                who is devoted and passionate adout what she do and very much 
+                who is devoted and passionate about what she do and very much
                 Passionate about continuous learning and staying up-to-date with
                 industry trends.
                 <br />
@@ -114,7 +115,7 @@ export const Home = () => {
               "
                 >
                   <Link
-                    to=""
+                    to="https://www.linkedin.com/in/rosemary-oguezuonu-ndubuizu-a032a4288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
                     className=" icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full
               hover:text-white hover:bg-yellow-500   "
                   >
@@ -123,31 +124,37 @@ export const Home = () => {
                 </div>
 
                 <div className=" md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh]">
-                  <Link className="  icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full hover:text-white hover:bg-yellow-500 ">
+                  <Link
+                    to="https://github.com/Rosemaryeey"
+                    className="  icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full hover:text-white hover:bg-yellow-500 "
+                  >
                     <BsGithub className=" bg-transparent" />
                   </Link>
                 </div>
 
                 <div className="md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh]">
-                  <div className="  icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full hover:text-white hover:bg-yellow-500 ">
+                  <Link
+                    to="https://www.instagram.com/rosvic2024?utm_source=qr&igsh=bjR5cDM5bDA2dWxt"
+                    className="  icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full hover:text-white hover:bg-yellow-500 "
+                  >
                     <BiLogoInstagramAlt className="" />
-                  </div>
+                  </Link>
                 </div>
 
                 <div className="md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh]">
-                  <div className="  icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full hover:text-white hover:bg-yellow-500 ">
+                  <Link
+                    to="https://x.com/NdubuizuUg77042?t=8KQfxrWJp8SmOw2Nv5CQXA&s=09"
+                    className="  icon  flex items-center justify-center md:h-[2.5rem] h-[5vh]  md:w-[2.5rem] w-[5vh] border-2 border-yellow-500 rounded-full hover:text-white hover:bg-yellow-500 "
+                  >
                     <BsTwitterX className="bg-transparent" />
-                  </div>
+                  </Link>
                 </div>
               </div>
               <div
                 className="flex items-center justify-between md:w-[15
                 rem] w-[17rem]"
               >
-                <button className=" btn md:w-[6rem] w-[100px]    md:h-[3rem] h-[50px] border-2  border-yellow-500 rounded-3xl  bg-yellow-500 shadow shadow-yellow-500 text-black">
-                  {" "}
-                  Hire Me
-                </button>
+                <CallButton />
                 <button className=" btn md:w-[8rem] w-[150px]    md:h-[3rem] h-[50px] border-2  border-yellow-500 rounded-3xl ">
                   {" "}
                   Get Resume
@@ -185,7 +192,7 @@ export const Home = () => {
           className="  bo te font-serif section md:w-[100%] w-[100%] flex  items-center justify-center   "
         >
           <main className=" md:h-[100vh] h-[140vh] flex flex-col items-center md:justify-around justify-between my-3   ">
-            <h1 className=" te text-6xl font-bold font-serif py-3 h-[20vh]">
+            <h1 className=" te md:text-6xl text-4xl font-bold font-serif py-3 h-[20vh]">
               <span className=" border-b-4 border-yellow-500"> Abou</span>t{" "}
               <span className="text-yellow-500">Me</span>
             </h1>
@@ -254,7 +261,7 @@ export const Home = () => {
       <div data-aos="zoom-in" className=" te bo " id="project">
         <div className="  section w-[100%]   flex items-start justify-center md:h-[150vh] h-[140vh]">
           <div className=" md:h-[150vh] h-[120vh] md:w-[95vw] w-[90vw] flex items-center justify-around px-5 md:flex-col flex-col ">
-            <h1 className="te  text-6xl font-extrabold   h-[20vh] w-[80vw] font-serif flex justify-center items-center   ">
+            <h1 className="te  md:text-6xl text-4xl font-extrabold   h-[20vh] w-[80vw] font-serif flex justify-center items-center   ">
               <h2 className="pan">
                 <span className="text-yellow-500"> P</span>roj
               </h2>
@@ -290,7 +297,7 @@ export const Home = () => {
         className="  te section w-[100%]  flex md:items-center items-start justify-center md:h-[115vh] h-[115vh]    "
       >
         <div className="  flex flex-col items-center md:justify-around justify-between  md:w-[95vw] w-[100%] md:h-[120vh] h-[130vh]  ">
-          <h1 className=" te text-6xl w-[85vw] h-[30vh] flex items-center justify-center font-extrabold font-serif ">
+          <h1 className=" te md:text-6xl text-4xl w-[85vw] h-[30vh] flex items-center justify-center font-extrabold font-serif ">
             <span className=" pan  py-3  border-b-4 border-yellow-500">
               {" "}
               Serv
@@ -369,7 +376,7 @@ export const Home = () => {
       >
         <div className=" flex  flex-col items-center justify-start md:h-[120vh] h-[130vh] md:w-[85vw] w-[100%]  p-5 ">
           <section className="flex flex-col items-center  justify-around md:h-[100vh] h-[120vh] md:w-[80vw] w-[90vw]    ">
-            <h1 className=" te text-6xl font-extrabold font-serif pb-3">
+            <h1 className=" te md:text-6xl text-4xl font-extrabold font-serif pb-3">
               <span className=" border-b-4 border-yellow-500"> Cont</span>act{" "}
               <span className="text-yellow-500">Me</span>
             </h1>
