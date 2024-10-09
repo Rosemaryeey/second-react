@@ -1,15 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../home/home.css";
-import Aos from "aos";
+import Aos from "aos"
 import "aos/dist/aos.css";
 import Img from "../assets/nice2.png";
 import { BsGithub, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 // project.......//
-import Pic from "../assets/wow2.png";
-import Imag from "../assets/wow3.png";
-import Im from "../assets/wooo.png";
+// cd
 import emailjs from "@emailjs/browser";
 import Flipcard from "../flip/flipcard";
 import DownloadButton from "../flip/downloadbutton";
