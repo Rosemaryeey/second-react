@@ -32,11 +32,13 @@ export const Home = () => {
      // Name validation
      if (!formData.from_name.value.trim()) {
        formErrors.name = "Name is needed.";
+       formErrors.name = "Name is needed.";
      }
 
      // Email validation (basic)
      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
      if (!formData.from_email.value.trim()) {
+       formErrors.email = "Email is needed.";
        formErrors.email = "Email is needed.";
      } else if (!emailPattern.test(formData.from_email.value)) {
        formErrors.email = "Please enter a valid email address.";
@@ -45,12 +47,14 @@ export const Home = () => {
      // Phone number validation
      if (!formData.number.value.trim()) {
        formErrors.number = "Phone number is needed.";
+       formErrors.number = "Phone number is needed.";
      } else if (!/^\+?\d{1,15}$/.test(formData.number.value)) {
        formErrors.number = "Please enter a valid phone number.";
      }
 
      // Message validation
      if (!formData.message.value.trim()) {
+       formErrors.message = "Message is needed.";
        formErrors.message = "Message is needed.";
      }
 
