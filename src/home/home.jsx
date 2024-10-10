@@ -31,27 +31,27 @@ export const Home = () => {
 
      // Name validation
      if (!formData.from_name.value.trim()) {
-       formErrors.name = "Name is required.";
+       formErrors.name = "Name is needed.";
      }
 
      // Email validation (basic)
      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
      if (!formData.from_email.value.trim()) {
-       formErrors.email = "Email is required.";
+       formErrors.email = "Email is needed.";
      } else if (!emailPattern.test(formData.from_email.value)) {
        formErrors.email = "Please enter a valid email address.";
      }
 
      // Phone number validation
      if (!formData.number.value.trim()) {
-       formErrors.number = "Phone number is required.";
+       formErrors.number = "Phone number is needed.";
      } else if (!/^\+?\d{1,15}$/.test(formData.number.value)) {
        formErrors.number = "Please enter a valid phone number.";
      }
 
      // Message validation
      if (!formData.message.value.trim()) {
-       formErrors.message = "Message is required.";
+       formErrors.message = "Message is needed.";
      }
 
      setErrors(formErrors);
@@ -79,45 +79,6 @@ export const Home = () => {
          }
        );
 
-     // const [forms, setForm] = useState({
-     //   to: "rosemaryoguezuonu@gmail.com",
-     //   name: "",
-     //   email: "",
-     //   number: "",
-     //   Message: "",
-     // });
-     // setErrors(validatonErrors);
-     // if (Object.keys(validatonErrors).length === 0) {
-     //   alert("form submitted successfully");
-     //   }
-     // const validatonErrors = {};
-     // if (!forms.name.trim()) {
-     //   validatonErrors.name = "name is required";
-     // }
-
-     // if (!forms.email.trim()) {
-     //   validatonErrors.email = "email is required";
-     // } else if (/\s+@\s\.\s+/.test(form.email)) {
-     //   validatonErrors.email = "email is not valid";
-     // }
-
-     // if (!forms.number.trim()) {
-     //   validatonErrors.number = "number is required";
-     // } else if (forms.number.length < 11) {
-     //   validatonErrors.email = "number should be at least 6 char ";
-     // }
-     // if (!forms.Message.trim()) {
-     //   validatonErrors.Message = "leave a message please ";
-     // }
-
-     // const [errors, setErrors] = useState({});
-     // const handlechange = (e) => {
-     //   const { name, value } = e.target;
-     //   setForm({
-     //     ...form,
-     //     [name]: value,
-     //   });
-     // };
    };
   return (
     <div className=" flex flex-col items-center justify-around h-[100%] w-[100%] gap-y-10">
