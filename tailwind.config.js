@@ -10,7 +10,7 @@ export default {
     extend: {},
   },
   plugins: [
-    require("preline/plugin"), // Add this line to include Preline's plugin
+    ("preline/plugin"), // Add this line to include Preline's plugin
   ],
 };
 
