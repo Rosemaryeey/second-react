@@ -11,7 +11,7 @@ function App() {
   const [togglebar, setTogglebar] = useState(false);
   return (
     <>
-      <div className="h-[16vh]   ">
+      <div className="h-[5vh]  ">
         <Context.Provider value={{ togglebar, setTogglebar }}>
           <Header />
           <Mode/>

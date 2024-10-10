@@ -1,54 +1,43 @@
-// import React, { useState } from "react";
-import Pic from "../assets/wow2.png";
+import React from "react";
 import "./flipcard.css";
+import { fliplink } from "./flipcard";
 
-// const Flipcard = () => {
-//   const [isFlipped, setIsFlipped] = useState(false);
+const FlipCard = () => {
+  return (
+    <div className="flex flex-wrap h-fit sm:w-[90vw] w-[90vw] items-center justify-between md:flex-row flex-col gap-y-10 px-5 sm:px-10 md:p-10 py-20 ">
+      {fliplink.map((item, index) => (
+        <div
+          key={index}
+          className="flip-card md:w-[30%] w-[100%] md:h-[60vh] h-[40vh] shadow-yellow-500 shadow-md rounded-xl flex "
+        >
+          <div className="flip-card-inner ">
+            <div className="flip-card-front flex flex-col rounded-xl">
+              {/* Set background image here */}
+              <div
+                className="w-[100%] h-[60%] rounded-t-xl bg-cover bg-no-repeat bg-center"
+                style={{ backgroundImage: `url(${item.image})` }}
+              ></div>
 
-//   const handleFlip = () => {
-//     setIsFlipped(!isFlipped);
-//   };
+              <div className="h-[40%] p-3 space-y-3">
+                <h1>{item.title}</h1>
+                <p className="md:text-[1rem] text-sm">{item.body}</p>
+              </div>
+            </div>
 
- const FlipCard = () => {
-   return (
-     <div className="  te bo flip-card md:w-[20vw] w-[30vw] md:h-[50vh] h-[25vh] shadow-yellow-500 shadow-md rounded-xl">
-       <div className="flip-card-inner">
-         <div className="flip-card-front  flex flex-col md:items-center items-center md:justify-between justify-evenly rounded-xl">
-           <img
-             src={Pic}
-             alt="project"
-             className=" md:w-[20vw] w-[30vw] md:h-[20vh] h-[10vh] rounded-t-xl"
-           />
-           <h1>PROJECT 1</h1>
-           <img
-             src={Pic}
-             alt="project"
-             className=" md:w-[20vw] w-[30vw] md:h-[20vh] h-[10vh] rounded-b-xl"
-           />
-           {/* <h3 className="bg-transparent">
-             Project 1:
-             <p>
-               Lorem ipsum dolor si{" "}
-               <a className="text-blue-400" href="">
-                 here
-               </a>
-             </p>
-           </h3> */}
-         </div>
-         <div className="flip-card-back  p-5 flex flex-col md:items-start items-center md:justify-around justify-evenly rounded-xl">
-           <h3 className="bg-transparent">
-             Click ={" "}
-             <a className="text-red-500" href=" ">
-               {" "}
-               here
-             </a>{" "}
-             for
-             <p> Details about the project.</p>
-           </h3>
-         </div>
-       </div>
-     </div>
-   );
- };
+            <div className="flip-card-back p-5 flex flex-col md:items-start items-center md:justify-around justify-evenly rounded-xl">
+              <h3 className="bg-transparent text-xl">
+                Click = "{" "}
+                <a className="text-red-500" href={item.link}>
+                  here
+                </a>{" "}" 
+                <p> for Details about the project.</p>
+              </h3>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
 
- export default FlipCard;
+export default FlipCard;

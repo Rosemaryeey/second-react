@@ -1,105 +1,148 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../home/home.css";
-import Aos from "aos"
+import Aos from "aos";
 import "aos/dist/aos.css";
 import Img from "../assets/nice2.png";
 import { BsGithub, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
 import { BiLogoInstagramAlt } from "react-icons/bi";
+import 'preline'; // Import Preline to use its components
+
 // project.......//
 // cd
 import emailjs from "@emailjs/browser";
-import Flipcard from "../flip/flipcard";
+import Flipcard from "../flip/flipcard.jsx";
 import DownloadButton from "../flip/downloadbutton";
 import CallButton from "../flip/callbutton";
 
 // contact
 
 export const Home = () => {
-  useEffect(() => {
-    Aos.init({ duration: 600, delay: 200 });
-  }, []);
+   const [errors, setErrors] = useState({});
+   const form = useRef();
 
-  const form = useRef();
-  const sendEmail = (e) => {
-    e.preventDefault();
-    emailjs
-      .sendForm("service_d2c48hs", "template_mjyxfod", form.current, {
-        publicKey: "KrOAwyrkR9ZkwzmvJ",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
+   useEffect(() => {
+     Aos.init({ duration: 600, delay: 200 });
+   }, []);
 
-    // const [forms, setForm] = useState({
-    //   to: "rosemaryoguezuonu@gmail.com",
-    //   name: "",
-    //   email: "",
-    //   number: "",
-    //   Message: "",
-    // });
-    // setErrors(validatonErrors);
-    // if (Object.keys(validatonErrors).length === 0) {
-    //   alert("form submitted successfully");
-    //   }
-    // const validatonErrors = {};
-    // if (!forms.name.trim()) {
-    //   validatonErrors.name = "name is required";
-    // }
+   const validateForm = () => {
+     const formErrors = {};
+     const formData = form.current;
 
-    // if (!forms.email.trim()) {
-    //   validatonErrors.email = "email is required";
-    // } else if (/\s+@\s\.\s+/.test(form.email)) {
-    //   validatonErrors.email = "email is not valid";
-    // }
+     // Name validation
+     if (!formData.from_name.value.trim()) {
+       formErrors.name = "Name is required.";
+     }
 
-    // if (!forms.number.trim()) {
-    //   validatonErrors.number = "number is required";
-    // } else if (forms.number.length < 11) {
-    //   validatonErrors.email = "number should be at least 6 char ";
-    // }
-    // if (!forms.Message.trim()) {
-    //   validatonErrors.Message = "leave a message please ";
-    // }
+     // Email validation (basic)
+     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+     if (!formData.from_email.value.trim()) {
+       formErrors.email = "Email is required.";
+     } else if (!emailPattern.test(formData.from_email.value)) {
+       formErrors.email = "Please enter a valid email address.";
+     }
 
-    // const [errors, setErrors] = useState({});
-    // const handlechange = (e) => {
-    //   const { name, value } = e.target;
-    //   setForm({
-    //     ...form,
-    //     [name]: value,
-    //   });
-    // };
-  };
+     // Phone number validation
+     if (!formData.number.value.trim()) {
+       formErrors.number = "Phone number is required.";
+     } else if (!/^\+?\d{1,15}$/.test(formData.number.value)) {
+       formErrors.number = "Please enter a valid phone number.";
+     }
+
+     // Message validation
+     if (!formData.message.value.trim()) {
+       formErrors.message = "Message is required.";
+     }
+
+     setErrors(formErrors);
+     return Object.keys(formErrors).length === 0;
+   };
+
+   const sendEmail = (e) => {
+     e.preventDefault();
+
+     if (!validateForm()) return; // Prevent submission if validation fails
+
+     emailjs
+       .sendForm("service_d2c48hs", "template_mjyxfod", form.current, {
+         publicKey: "KrOAwyrkR9ZkwzmvJ",
+       })
+       .then(
+         () => {
+           alert("Message sent successfully!"); // Success alert
+           form.current.reset(); // Reset form fields
+           setErrors({}); // Clear any existing errors
+         },
+         (error) => {
+           alert("Failed to send message. Please try again."); // Failure alert
+           console.log("FAILED...", error.text);
+         }
+       );
+
+     // const [forms, setForm] = useState({
+     //   to: "rosemaryoguezuonu@gmail.com",
+     //   name: "",
+     //   email: "",
+     //   number: "",
+     //   Message: "",
+     // });
+     // setErrors(validatonErrors);
+     // if (Object.keys(validatonErrors).length === 0) {
+     //   alert("form submitted successfully");
+     //   }
+     // const validatonErrors = {};
+     // if (!forms.name.trim()) {
+     //   validatonErrors.name = "name is required";
+     // }
+
+     // if (!forms.email.trim()) {
+     //   validatonErrors.email = "email is required";
+     // } else if (/\s+@\s\.\s+/.test(form.email)) {
+     //   validatonErrors.email = "email is not valid";
+     // }
+
+     // if (!forms.number.trim()) {
+     //   validatonErrors.number = "number is required";
+     // } else if (forms.number.length < 11) {
+     //   validatonErrors.email = "number should be at least 6 char ";
+     // }
+     // if (!forms.Message.trim()) {
+     //   validatonErrors.Message = "leave a message please ";
+     // }
+
+     // const [errors, setErrors] = useState({});
+     // const handlechange = (e) => {
+     //   const { name, value } = e.target;
+     //   setForm({
+     //     ...form,
+     //     [name]: value,
+     //   });
+     // };
+   };
   return (
-    <div className=" flex flex-col items-center justify-around h-[100%] w-[100%] ">
+    <div className=" flex flex-col items-center justify-around h-[100%] w-[100%] gap-y-10">
       {/* home............................. */}
       <div
-      id="home"
+        id="home"
         data-aos="fade-left"
         className=" bo te section md:w-[100%]  flex items-start justify-center  "
       >
         <div
-          className=" md:h-[90vh]  h-[140vh] md:w-[90vw] w-[100%] flex items-center justify-center 
-          px-5 md:flex-row flex-col-reverse"
+          className=" h-fit pt-20 md:w-[95%] w-[100%] flex items-center justify-center 
+          px-5 md:flex-row flex-col-reverse "
         >
-          <div className="md:w-[85vw] w-[90vw] md:h-[90vh] h-[140vh]   md:flex-row flex-col-reverse  flex md:items-start items-center justify-around  ">
-            <section className=" te text md:w-[40vw] w-[90vw]    md:h-[80vh] h-[80vh] p-5 flex flex-col items-start justify-around ">
+          <div className="md:w-[85vw] w-[90vw] h-fit gap-y-10  md:flex-row flex-col-reverse  flex md:items-start items-center justify-around  ">
+            <section className=" te text md:w-[40vw] w-[90vw] h-fit gap-y-5  p-5 flex flex-col items-start justify-around ">
               <p className="tex text md:text-2xl text-3xl  font-serif">
                 Hi I'm Rosemary
               </p>
-              <h1 className="text md:text-5xl text-4xl  font-serif">
+              <h1 className="text md:text-5xl text-4xl  font-serif h-fit">
                 A <span className=" spen  text-yellow-500"> </span>
               </h1>
               <p className="text md:text-xl ">
-                who is devoted and passionate about what she do and very much
-                Passionate about continuous learning and staying up-to-date with
-                industry trends.
+                Passionate about crafting impactful, user-centric solutions with
+                modern tech and clean code. Blends creativity and technical
+                prowess for top-tier results.
                 <br />
               </p>
 
@@ -219,7 +262,7 @@ export const Home = () => {
                           className="
                     text-yellow-500 text-3xl "
                         >
-                          3+
+                          2+
                         </span>{" "}
                         Years Of Exprience
                       </div>
@@ -228,7 +271,7 @@ export const Home = () => {
                           className="
                     text-yellow-500 text-3xl "
                         >
-                          10+
+                          20+
                         </span>{" "}
                         Complete projects
                       </div>
@@ -242,9 +285,9 @@ export const Home = () => {
                           className="
                     text-yellow-500 text-3xl "
                         >
-                          3+
+                          10+
                         </span>{" "}
-                        ipsam animi?jugig
+                        life projects
                       </div>
                     </aside>
                   </div>
@@ -258,31 +301,16 @@ export const Home = () => {
       {/* Project........................................ */}
 
       <div data-aos="zoom-in" className=" te bo " id="project">
-        <div className="  section w-[100%]   flex items-start justify-center md:h-[150vh] h-[140vh]">
-          <div className=" md:h-[150vh] h-[120vh] md:w-[95vw] w-[90vw] flex items-center justify-around px-5 md:flex-col flex-col ">
-            <h1 className="te  md:text-6xl text-4xl font-extrabold   h-[20vh] w-[80vw] font-serif flex justify-center items-center   ">
+        <div className="  section w-[100%]   flex items-start justify-center sm:h-fit  ">
+          <div className=" h-fit md:w-[95vw] w-[90vw] flex items-center justify-around px-5 md:flex-col flex-col ">
+            <h1 className="te  md:text-6xl text-4xl font-extrabold h-[20vh] w-[100%] font-serif flex justify-center items-center   ">
               <h2 className="pan">
                 <span className="text-yellow-500"> P</span>roj
               </h2>
               ects
             </h1>
-            <main className="md:w-[95vw] w-[95vw] md:h-[120vh] h-[100vh] flex items-center justify-between md:flex-col flex-row bg-transparent text-yellow-500  ">
-              <aside
-                className="flex md:w-[90vw] w-[47vw] items-center justify-around  md:h-[60vh] h-[90vh] 
-             md:flex-row flex-col"
-              >
-                <Flipcard />
-                <Flipcard />
-                <Flipcard />
-              </aside>
-              <aside
-                className="flex md:w-[90vw] w-[47vw] items-center justify-around  md:h-[60vh] h-[90vh] 
-             md:flex-row flex-col"
-              >
-                <Flipcard />
-                <Flipcard />
-                <Flipcard />
-              </aside>
+            <main className=" h-fit  bg-transparent text-yellow-500  ">
+              <Flipcard />
             </main>
           </div>
         </div>
@@ -320,17 +348,17 @@ export const Home = () => {
               </div>
               <div className="  oh flex flex-col items-start justify-center   md:w-[20vw] w-[80vw] md:h-[30vh] h-[12vh] rounded-3xl  px-5 hover:bg-white  shadow-yellow-500 shadow-md  ">
                 <h3 className="md:text-2xl text-xl  font-bold bg-transparent">
-                  Backend
+                  Frontend
                 </h3>
-                <p className="bg-transparent">Will serve you with node.js</p>
+                <p className="bg-transparent">Will serve you with htmx</p>
               </div>
 
               <div className="  oh flex flex-col items-start justify-center   md:w-[20vw] w-[80vw] md:h-[30vh] h-[12vh] rounded-3xl  px-5 hover:bg-white  shadow-yellow-500 shadow-md  ">
                 <h3 className="md:text-2xl text-xl  font-bold bg-transparent">
-                  Backend
+                  Frontend
                 </h3>
                 <p className="bg-transparent">
-                  Will serve you with flutter <br />
+                  will serve you with react.js <br />
                 </p>
               </div>
             </div>
@@ -338,26 +366,28 @@ export const Home = () => {
             <div className=" flex items-center justify-around  md:h-[40vh] h-[55vh]  md:w-[80vw] text-yellow-500  md:flex-row flex-col">
               <div className="  oh flex flex-col items-start justify-center  md:w-[20vw] w-[80vw] md:h-[30vh] h-[12vh] rounded-3xl  px-5 hover:bg-white  shadow-yellow-500 shadow-md ">
                 <h3 className="md:text-2xl text-xl  font-bold bg-transparent">
-                  Fontend
+                  Frontend
                 </h3>
                 <p className="bg-transparent">
-                  will serve you with Next.jst <br />
+                  will serve you with Next.js <br />
                 </p>
               </div>
               <div className="  oh flex flex-col items-start justify-center   md:w-[20vw] w-[80vw] md:h-[30vh] h-[12vh] rounded-3xl  px-5 hover:bg-white  shadow-yellow-500 shadow-md ">
                 <h3 className="md:text-2xl text-xl  font-bold bg-transparent">
-                  Fontend
+                  Backend
                 </h3>
                 <p className="bg-transparent">
-                  will serve you with react.js <br />
+                  {" "}
+                  will serve you with flutter
+                  <br />
                 </p>
               </div>
               <div className=" oh flex flex-col items-start justify-center  md:w-[20vw] w-[80vw] md:h-[30vh] h-[12vh] rounded-3xl  px-5 hover:bg-white  shadow-yellow-500 shadow-md ">
                 <h3 className="md:text-2xl text-xl  font-bold bg-transparent">
-                  Fontend
+                  Backend
                 </h3>
                 <p className="bg-transparent">
-                  Serve you With htmx
+                  Serve you With express.js
                   <br />
                 </p>
               </div>
@@ -371,87 +401,73 @@ export const Home = () => {
       <div
         data-aos="fade-up"
         id="contact"
-        className=" te section md:w-[100%]  flex items-start justify-center  my-[10vh] "
+        className="te section md:w-[100%] flex items-start justify-center my-[10vh]"
       >
-        <div className=" flex  flex-col items-center justify-start md:h-[120vh] h-[130vh] md:w-[85vw] w-[100%]  p-5 ">
-          <section className="flex flex-col items-center  justify-around md:h-[100vh] h-[120vh] md:w-[80vw] w-[90vw]    ">
-            <h1 className=" te md:text-6xl text-4xl font-extrabold font-serif pb-3">
-              <span className=" border-b-4 border-yellow-500"> Cont</span>act{" "}
+        <div className="flex flex-col items-center justify-start md:h-[120vh] h-[130vh] md:w-[85vw] w-[100%] p-5">
+          <section className="flex flex-col items-center justify-around md:h-[100vh] h-[120vh] md:w-[80vw] w-[90vw]">
+            <h1 className="te md:text-6xl text-4xl font-extrabold font-serif pb-3">
+              <span className="border-b-4 border-yellow-500"> Cont</span>act{" "}
               <span className="text-yellow-500">Me</span>
             </h1>
             <form
               ref={form}
               onSubmit={sendEmail}
-              // onSubmit={handleSubmit}
-              className=" flex md:h-[60vh] h-[90vh] items-center justify-around md:w-[80vw] w-[90vw]  md:flex-row flex-col   "
+              className="flex md:h-[60vh] h-[90vh] items-center justify-around md:w-[80vw] w-[90vw] md:flex-row flex-col"
             >
-              <div className="flex flex-col items-center justify-around md:h-[55vh] h-full md:w-[50vw] w-[85vw]  ">
-                <div className="flex flex-col items-start ">
+              <div className="flex flex-col items-center justify-around md:h-[55vh] h-full md:w-[50vw] w-[85vw]">
+                <div className="flex flex-col items-start">
                   <input
                     type="text"
                     name="from_name"
                     placeholder="Name"
-                    className=" md:w-[35vw] w-[75vw] px-5 md: md:h-[7vh] h-[8vh]  rounded-2xl border-yellow-500 border-2 
-                    bg-transparent "
-                    // onChange={handlechange}
+                    className="md:w-[35vw] w-[75vw] px-5 md:h-[7vh] h-[8vh] rounded-2xl border-yellow-500 border-2 bg-transparent"
                   />
-                  {/* {errors.name && (
+                  {errors.name && (
                     <span className="text-red-500">{errors.name}</span>
-                  )} */}
+                  )}
                 </div>
 
-                <div className="flex flex-col items-start ">
+                <div className="flex flex-col items-start">
                   <input
                     type="email"
                     name="from_email"
                     placeholder="Example@gmail.com"
-                    className="md:w-[35vw] w-[75vw] px-5  md:h-[7vh] h-[8vh] rounded-2xl border-yellow-500 border-2  bg-transparent"
+                    className="md:w-[35vw] w-[75vw] px-5 md:h-[7vh] h-[8vh] rounded-2xl border-yellow-500 border-2 bg-transparent"
                     autoComplete="off"
-                    // onChange={handlechange}
                   />
-                  {/* {errors.email && (
+                  {errors.email && (
                     <span className="text-red-500">{errors.email}</span>
-                  )} */}
+                  )}
                 </div>
-                <div className="flex flex-col items-start ">
+
+                <div className="flex flex-col items-start">
                   <input
                     type="tel"
                     name="number"
                     placeholder="+1"
-                    className="md:w-[35vw] w-[75vw] px-5  md:h-[7vh] h-[8vh] rounded-2xl border-yellow-500 border-2 bg-transparent "
-                    // onChange={handlechange}
+                    className="md:w-[35vw] w-[75vw] px-5 md:h-[7vh] h-[8vh] rounded-2xl border-yellow-500 border-2 bg-transparent"
                   />
-                  {/* {errors.number && (
+                  {errors.number && (
                     <span className="text-red-500">{errors.number}</span>
-                  )} */}
+                  )}
                 </div>
-                {/* <div>
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    className=" md:w-[35vw] w-[75vw]  px-5  md:h-[7vh] h-[8vh] rounded-2xl border-yellow-500 border-2  bg-transparent"
-                  />
-                </div> */}
               </div>
 
-              {/* textarea */}
-
-              <div className="md:h-[50vh] h-[60vh] flex flex-col md:w-[40vw] w-[80vw] justify-around items-center  ">
+              <div className="md:h-[50vh] h-[60vh] flex flex-col md:w-[40vw] w-[80vw] justify-around items-center">
                 <section className="flex flex-col">
                   <textarea
-                    // onChange={handlechange}
                     name="message"
                     placeholder="Your Message"
-                    id=" Message"
-                    className=" p-3  md:h-[30vh] h-[20vh] md:w-[30vw] w-[75vw] border-2 border-yellow-500 rounded-2xl bg-transparent "
+                    id="message"
+                    className="p-3 md:h-[30vh] h-[20vh] md:w-[30vw] w-[75vw] border-2 border-yellow-500 rounded-2xl bg-transparent"
                   />
-                  {/* {errors.Message && (
-                    <span className="text-red-500">{errors.Message}</span>
-                  )} */}
+                  {errors.message && (
+                    <span className="text-red-500">{errors.message}</span>
+                  )}
                 </section>
                 <button
                   type="submit"
-                  className=" button md:w-[200px] w-[150px] md:h-[6vh] h-[40px] sm:relative  md:right-0 right-[25vw] bg-yellow-500 rounded-full text-black "
+                  className="button md:w-[200px] w-[150px] md:h-[6vh] h-[40px] sm:relative md:right-0 right-[25vw] bg-yellow-500 rounded-full text-black"
                 >
                   Send
                 </button>

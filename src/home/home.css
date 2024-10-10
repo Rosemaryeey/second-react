@@ -6,7 +6,7 @@
     
     
 .spen::before{
-    content: " Web Developer ";
+    content: " Web Dev ";
     color:rgb(236, 182, 4) ;
     animation: words 20s infinite;
 }
